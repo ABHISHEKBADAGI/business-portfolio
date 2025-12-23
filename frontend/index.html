@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FreshClean Laundry Service</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div id="app-container">
+        <div id="auth-forms" class="hidden">
+            <div class="auth-container">
+                <div class="auth-tabs">
+                    <button class="auth-tab active" id="login-tab">Login</button>
+                    <button class="auth-tab" id="signup-tab">Sign Up</button>
+                </div>
+                
+                <div class="auth-content">
+                    <form id="login-form" class="auth-form">
+                        <h2>Login to Your Account</h2>
+                        <div class="form-group">
+                            <label for="login-email">Email</label>
+                            <input type="email" id="login-email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="login-password">Password</label>
+                            <input type="password" id="login-password" required>
+                        </div>
+                        <button type="submit" class="btn-primary">Login</button>
+                        <p class="auth-switch">Don't have an account? <a href="#" id="switch-to-signup">Sign Up</a></p>
+                    </form>
+
+                    <form id="signup-form" class="auth-form hidden">
+                        <h2>Create New Account</h2>
+                        <div class="form-group">
+                            <label for="signup-name">Full Name</label>
+                            <input type="text" id="signup-name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="signup-email">Email</label>
+                            <input type="email" id="signup-email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="signup-phone">Phone Number</label>
+                            <input type="tel" id="signup-phone" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="signup-address">Address</label>
+                            <textarea id="signup-address" rows="3" required></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="signup-password">Password</label>
+                            <input type="password" id="signup-password" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="signup-confirm-password">Confirm Password</label>
+                            <input type="password" id="signup-confirm-password" required>
+                        </div>
+                        <button type="submit" class="btn-primary">Create Account</button>
+                        <p class="auth-switch">Already have an account? <a href="#" id="switch-to-login">Login</a></p>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div id="main-app" class="hidden">
+            <header>
+                <nav class="navbar">
+                    <div class="logo">
+                        <i class="fas fa-tshirt"></i>
+                        <span>FreshClean</span>
+                    </div>
+                    <ul class="nav-links">
+                        <li><a href="#" data-page="home">Home</a></li>
+                        <li><a href="#" data-page="book">Book Service</a></li>
+                        <li><a href="#" data-page="orders">My Orders</a></li>
+                        <li><a href="#" data-page="profile">Profile</a></li>
+                    </ul>
+                    <div class="user-actions">
+                        <div class="wallet">
+                            <i class="fas fa-wallet"></i>
+                            <span id="wallet-balance">₹0.00</span>
+                        </div>
+                        <button id="add-money-btn" class="btn-add-money">
+                            <i class="fas fa-plus"></i> Add Money
+                        </button>
+                        <button id="logout-btn" class="btn-logout">
+                            <i class="fas fa-sign-out-alt"></i> Logout
+                        </button>
+                    </div>
+                </nav>
+            </header>
+
+            <main>
+                <div id="home-page" class="page active">
+                    <section class="hero">
+                        <div class="hero-content">
+                            <h1>Premium Dry-Clean & Laundry Service</h1>
+                            <p>Pickup, cleaning, and delivery right to your doorstep. Professional care for your clothes.</p>
+                            <button id="book-now-hero" class="btn-primary">Schedule a Pickup</button>
+                        </div>
+                        <div class="hero-image">
+                            <img src="https://images.unsplash.com/photo-1582735689369-4fe89db7114c?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Laundry Service">
+                        </div>
+                    </section>
+
+                    <section class="services">
+                        <h2>Our Services</h2>
+                        <div class="services-grid">
+                            <div class="service-card">
+                                <div class="service-icon">
+                                    <i class="fas fa-soap"></i>
+                                </div>
+                                <h3>Dry Cleaning</h3>
+                                <p>Professional dry cleaning for suits, dresses, and delicate fabrics.</p>
+                            </div>
+                            <div class="service-card">
+                                <div class="service-icon">
+                                    <i class="fas fa-tshirt"></i>
+                                </div>
+                                <h3>Wash & Fold</h3>
+                                <p>Everyday laundry washed, dried, and neatly folded for you.</p>
+                            </div>
+                            <div class="service-card">
+                                <div class="service-icon">
+                                    <i class="fas fa-question-circle"></i>
+                                </div>
+                                <h3>Special Care</h3>
+                                <p>Special treatment for stains, delicate items, and special fabrics.</p>
+                            </div>
+                            <div class="service-card">
+                                <div class="service-icon">
+                                    <i class="fas fa-shipping-fast"></i>
+                                </div>
+                                <h3>Express Service</h3>
+                                <p>Get your clothes cleaned and delivered within 24 hours.</p>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+
+                <div id="book-page" class="page">
+                    <section class="booking">
+                        <h2>Schedule a Pickup</h2>
+                        <div class="booking-container">
+                            <div class="form-section">
+                                <form id="booking-form">
+                                    <div class="form-group">
+                                        <label for="name">Full Name</label>
+                                        <input type="text" id="name" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="phone">Phone Number</label>
+                                        <input type="tel" id="phone" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="address">Pickup Address</label>
+                                        <textarea id="address" rows="3" required></textarea>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="pickup-date">Pickup Date</label>
+                                        <input type="date" id="pickup-date" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="pickup-time">Pickup Time</label>
+                                        <select id="pickup-time" required>
+                                            <option value="">Select a time slot</option>
+                                            <option value="9am-11am">9:00 AM - 11:00 AM</option>
+                                            <option value="11am-1pm">11:00 AM - 1:00 PM</option>
+                                            <option value="1pm-3pm">1:00 PM - 3:00 PM</option>
+                                            <option value="3pm-5pm">3:00 PM - 5:00 PM</option>
+                                            <option value="5pm-7pm">5:00 PM - 7:00 PM</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Service Type</label>
+                                        <div class="service-options">
+                                            <div class="service-option">
+                                                <input type="radio" id="dry-clean" name="service" value="dry-clean" checked>
+                                                <label for="dry-clean">Dry Cleaning (₹250/kg)</label>
+                                            </div>
+                                            <div class="service-option">
+                                                <input type="radio" id="wash-fold" name="service" value="wash-fold">
+                                                <label for="wash-fold">Wash & Fold (₹150/kg)</label>
+                                            </div>
+                                            <div class="service-option">
+                                                <input type="radio" id="express" name="service" value="express">
+                                                <label for="express">Express Service (+₹200)</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="weight">Estimated Weight (kg)</label>
+                                        <input type="number" id="weight" min="1" max="20" value="5" required>
+                                    </div>
+                                    <div class="price-summary">
+                                        <h3>Order Summary</h3>
+                                        <div class="summary-row">
+                                            <span>Service Cost:</span>
+                                            <span id="service-cost">₹0</span>
+                                        </div>
+                                        <div class="summary-row">
+                                            <span>Express Charge:</span>
+                                            <span id="express-charge">₹0</span>
+                                        </div>
+                                        <div class="summary-row total">
+                                            <span>Total Amount:</span>
+                                            <span id="total-amount">₹0</span>
+                                        </div>
+                                    </div>
+                                    <div class="payment-method">
+                                        <h3>Payment Method</h3>
+                                        <div class="payment-options">
+                                            <div class="payment-option">
+                                                <input type="radio" id="wallet-payment" name="payment" value="wallet" checked>
+                                                <label for="wallet-payment">Wallet Balance</label>
+                                            </div>
+                                            <div class="payment-option">
+                                                <input type="radio" id="card-payment" name="payment" value="card">
+                                                <label for="card-payment">Credit/Debit Card</label>
+                                            </div>
+                                            <div class="payment-option">
+                                                <input type="radio" id="upi-payment" name="payment" value="upi">
+                                                <label for="upi-payment">UPI</label>
+                                            </div>
+                                        </div>
+                                        <div id="card-details" class="payment-details hidden">
+                                            <div class="form-group">
+                                                <label for="card-number">Card Number</label>
+                                                <input type="text" id="card-number" placeholder="1234 5678 9012 3456">
+                                            </div>
+                                            <div class="form-group-row">
+                                                <div class="form-group">
+                                                    <label for="card-expiry">Expiry Date</label>
+                                                    <input type="text" id="card-expiry" placeholder="MM/YY">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="card-cvv">CVV</label>
+                                                    <input type="text" id="card-cvv" placeholder="123">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div id="upi-details" class="payment-details hidden">
+                                            <div class="form-group">
+                                                <label for="upi-id">UPI ID</label>
+                                                <input type="text" id="upi-id" placeholder="username@upi">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <button type="submit" class="btn-primary" id="submit-booking">Confirm Booking (₹<span id="confirm-amount">0</span>)</button>
+                                </form>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+
+                <div id="orders-page" class="page">
+                    <section class="orders">
+                        <h2>My Orders</h2>
+                        <div class="orders-container">
+                            <div class="orders-list" id="orders-list">
+                                <div class="no-orders">
+                                    <i class="fas fa-box-open"></i>
+                                    <h3>No Orders Yet</h3>
+                                    <p>Book your first laundry service to get started!</p>
+                                    <button class="btn-primary" id="book-first-order">Book Now</button>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+
+                <div id="profile-page" class="page">
+                    <section class="profile">
+                        <h2>My Profile</h2>
+                        <div class="profile-container">
+                            <div class="profile-info">
+                                <div class="profile-header">
+                                    <div class="profile-avatar">
+                                        <i class="fas fa-user-circle"></i>
+                                    </div>
+                                    <div class="profile-name">
+                                        <h3 id="profile-fullname">Loading...</h3>
+                                        <p id="profile-email">Loading...</p>
+                                    </div>
+                                </div>
+                                <div class="profile-details">
+                                    <h3>Personal Information</h3>
+                                    <div class="detail-row">
+                                        <span class="detail-label">Full Name</span>
+                                        <span class="detail-value" id="detail-name">Loading...</span>
+                                    </div>
+                                    <div class="detail-row">
+                                        <span class="detail-label">Email</span>
+                                        <span class="detail-value" id="detail-email">Loading...</span>
+                                    </div>
+                                    <div class="detail-row">
+                                        <span class="detail-label">Phone</span>
+                                        <span class="detail-value" id="detail-phone">Loading...</span>
+                                    </div>
+                                    <div class="detail-row">
+                                        <span class="detail-label">Address</span>
+                                        <span class="detail-value" id="detail-address">Loading...</span>
+                                    </div>
+                                    <div class="detail-row">
+                                        <span class="detail-label">Member Since</span>
+                                        <span class="detail-value" id="detail-join-date">Loading...</span>
+                                    </div>
+                                    <button id="edit-profile-btn" class="btn-secondary">Edit Profile</button>
+                                </div>
+                            </div>
+                            <div class="profile-wallet">
+                                <h3>Wallet & Transactions</h3>
+                                <div class="wallet-balance-card">
+                                    <div class="wallet-info">
+                                        <i class="fas fa-wallet"></i>
+                                        <div>
+                                            <p>Current Balance</p>
+                                            <h2 id="profile-wallet-balance">₹0.00</h2>
+                                        </div>
+                                    </div>
+                                    <button id="add-money-profile" class="btn-primary">Add Money</button>
+                                </div>
+                                <div class="transactions">
+                                    <h4>Recent Transactions</h4>
+                                    <div class="transactions-list" id="transactions-list">
+                                        <p class="no-transactions">No transactions yet</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </main>
+
+            <div id="wallet-modal" class="modal">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h2>Add Money to Wallet</h2>
+                        <span class="close">&times;</span>
+                    </div>
+                    <div class="modal-body">
+                        <div class="current-balance">
+                            <h3>Current Balance: <span id="modal-balance">₹0.00</span></h3>
+                        </div>
+                        <div class="payment-methods">
+                            <h3>Select Payment Method</h3>
+                            <div class="payment-method-options">
+                                <div class="payment-method-option">
+                                    <input type="radio" id="method-card" name="payment-method" value="card" checked>
+                                    <label for="method-card">
+                                        <i class="fas fa-credit-card"></i>
+                                        <span>Credit/Debit Card</span>
+                                    </label>
+                                </div>
+                                <div class="payment-method-option">
+                                    <input type="radio" id="method-upi" name="payment-method" value="upi">
+                                    <label for="method-upi">
+                                        <i class="fas fa-mobile-alt"></i>
+                                        <span>UPI</span>
+                                    </label>
+                                </div>
+                                <div class="payment-method-option">
+                                    <input type="radio" id="method-netbanking" name="payment-method" value="netbanking">
+                                    <label for="method-netbanking">
+                                        <i class="fas fa-university"></i>
+                                        <span>Net Banking</span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="amount-options">
+                            <h3>Select Amount (₹)</h3>
+                            <div class="amount-grid">
+                                <button class="amount-option" data-amount="200">₹200</button>
+                                <button class="amount-option" data-amount="500">₹500</button>
+                                <button class="amount-option" data-amount="1000">₹1000</button>
+                                <button class="amount-option" data-amount="2000">₹2000</button>
+                            </div>
+                        </div>
+                        <div class="custom-amount">
+                            <h3>Or Enter Custom Amount</h3>
+                            <div class="custom-input">
+                                <span class="currency">₹</span>
+                                <input type="number" id="custom-amount" placeholder="Enter amount" min="100" max="10000">
+                            </div>
+                        </div>
+                        <div id="card-payment-details" class="payment-details">
+                            <div class="form-group">
+                                <label for="modal-card-number">Card Number</label>
+                                <input type="text" id="modal-card-number" placeholder="1234 5678 9012 3456">
+                            </div>
+                            <div class="form-group-row">
+                                <div class="form-group">
+                                    <label for="modal-card-expiry">Expiry Date</label>
+                                    <input type="text" id="modal-card-expiry" placeholder="MM/YY">
+                                </div>
+                                <div class="form-group">
+                                    <label for="modal-card-cvv">CVV</label>
+                                    <input type="text" id="modal-card-cvv" placeholder="123">
+                                </div>
+                            </div>
+                        </div>
+                        <div id="upi-payment-details" class="payment-details hidden">
+                            <div class="form-group">
+                                <label for="modal-upi-id">UPI ID</label>
+                                <input type="text" id="modal-upi-id" placeholder="username@upi">
+                            </div>
+                        </div>
+                        <div id="netbanking-payment-details" class="payment-details hidden">
+                            <div class="form-group">
+                                <label for="bank-select">Select Bank</label>
+                                <select id="bank-select">
+                                    <option value="">Select Bank</option>
+                                    <option value="sbi">State Bank of India</option>
+                                    <option value="hdfc">HDFC Bank</option>
+                                    <option value="icici">ICICI Bank</option>
+                                    <option value="axis">Axis Bank</option>
+                                    <option value="kotak">Kotak Mahindra Bank</option>
+                                </select>
+                            </div>
+                        </div>
+                        <button id="add-to-wallet" class="btn-primary">Add to Wallet</button>
+                    </div>
+                </div>
+            </div>
+
+            <div id="edit-profile-modal" class="modal">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h2>Edit Profile</h2>
+                        <span class="close-edit">&times;</span>
+                    </div>
+                    <div class="modal-body">
+                        <form id="edit-profile-form">
+                            <div class="form-group">
+                                <label for="edit-name">Full Name</label>
+                                <input type="text" id="edit-name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="edit-phone">Phone Number</label>
+                                <input type="tel" id="edit-phone" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="edit-address">Address</label>
+                                <textarea id="edit-address" rows="3" required></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="edit-password">New Password (leave empty to keep current)</label>
+                                <input type="password" id="edit-password">
+                            </div>
+                            <div class="form-group">
+                                <label for="edit-confirm-password">Confirm New Password</label>
+                                <input type="password" id="edit-confirm-password">
+                            </div>
+                            <button type="submit" class="btn-primary">Update Profile</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <footer>
+                <div class="footer-content">
+                    <div class="footer-section">
+                        <h3>FreshClean</h3>
+                        <p>Professional laundry and dry-cleaning services with pickup and delivery.</p>
+                    </div>
+                    <div class="footer-section">
+                        <h3>Contact Us</h3>
+                        <p><i class="fas fa-phone"></i> +91 98765 43210</p>
+                        <p><i class="fas fa-envelope"></i> support@freshclean.com</p>
+                    </div>
+                    <div class="footer-section">
+                        <h3>Service Areas</h3>
+                        <p>Delhi • Mumbai • Bangalore • Hyderabad • Pune</p>
+                    </div>
+                </div>
+                <div class="footer-bottom">
+                    <p>&copy; 2023 FreshClean Laundry Service. All rights reserved.</p>
+                </div>
+            </footer>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
